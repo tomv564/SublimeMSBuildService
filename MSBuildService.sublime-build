@@ -1,0 +1,19 @@
+{
+	"target": "msbuild_service_file",
+    "selector": "source.mylang",
+    "cancel": {"kill": true},
+    "variants": [
+        {
+            "name": "Solution",
+            "solution": true
+        },
+        {
+            "name": "Project",
+            "project": true
+        },
+        {
+        	"name": "File",
+        	"file": true
+        }
+    ]
+}

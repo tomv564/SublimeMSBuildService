@@ -1,0 +1,10 @@
+[
+	{
+		"caption": "MSBuildService: Build project",
+		"command": "msbuild_service_project"
+	},
+	{
+		"caption": "MSBuildService: Build file",
+		"command": "msbuild_service_file"
+	}
+]
