@@ -256,16 +256,20 @@ class BuildContextListener(sublime_plugin.EventListener):
         project_info = await client.get_project_name(file_path)
         if project_info:
             project_name = project_info['ProjectName']
-            view.set_status("msbuild_project_name", project_name)
+            view.set_status("msbuild_project_name", "MSBuild: " + project_name)
             view.settings().set("msbuild_project_name", project_name)
 
     async def start_session(self, view, solution_path):
         window = view.window()
         client = BuildServiceInstance()
+        view.set_status("msbuild_project_name", "MSBuild: Loading solution...")
         result = await client.start(solution_path)
         if result:
             service_by_window[window.id()] = client
+            view.set_status("msbuild_project_name", "MSBuild: Solution loaded")
             print('msbuild service loaded solution: ' + solution_path)
+        else:
+            view.set_status("msbuild_project_name", "MSBuild: Failed to load solution")
 
 
 class MsbuildServiceFileCommand(sublime_plugin.WindowCommand):
